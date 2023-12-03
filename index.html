@@ -93,6 +93,8 @@ body {
   background-color: #f1f1f1;
   padding: 10px;
   text-align: center;
+  width: 100%;
+  height: auto;
 }
 
 .card {
@@ -115,9 +117,9 @@ body {
   display: grid;
   justify-content: center;
   justify-content: space-evenly;
-  grid-template-columns: auto auto auto auto ; /*Make the grid smaller than the container*/
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /*Make the grid smaller than the container*/
   padding: 10px;
+
 
 }
 
