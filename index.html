@@ -1,217 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title> Gift plus Sun </title>
-    <meta charset="utf-8">
-    <meta name = "viewport" content = "width = device-width">
-    <style>
-* {
-  box-sizing: border-box;
-}
+  <title> Gift plus Sun </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  scroll-behavior: smooth; /* Enable smooth scrolling */
-}
+    body {
+      background-image: url('webbigpicture.jpg');
+      background-size: cover;
+      margin: 0;
+      scroll-behavior: smooth;
+      /* Enable smooth scrolling */
+    }
 
-/* Style the header */
-.header {
-  background-color: #f1f1f1;
-  padding: 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-}
+    /* Style the header */
+    .header {
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+    }
 
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
+    /* Style the top navigation bar */
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
 
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    /* Style the topnav links */
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
 
-}
+    }
 
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
+    /* Change color on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
 
-/*pop up bar */
-.popup {
-  width: auto;
-  height:auto;  
-  padding: auto;
-  border: 3px solid red;
-  box-sizing: border-box;
-  float:center;
-  text-align: center;
-  background: fixed;
-}
+    /*pop up bar */
+    .popup {
+      width: auto;
+      height: auto;
+      padding: auto;
+      border: 3px solid red;
+      box-sizing: border-box;
+      float: center;
+      text-align: center;
+      background: fixed;
+    }
 
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-}
+    /* Create three unequal columns that floats next to each other */
+    .column {
+      float: left;
+      padding: 10px;
+    }
 
-/* Left and right column */
-.column.side {
-  width: 25%;
-}
+    /* Left and right column */
+    .column.side {
+      width: 25%;
+    }
 
-/* Middle column */
-.column.middle {
-  width: 50%;
-}
+    /* Middle column */
+    .column.middle {
+      width: 50%;
+    }
 
-/* Clear floats after the columns */
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    /* Clear floats after the columns */
+    .row::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column.side, .column.middle {
-    width: 100%;
-  }
-}
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
 
-/* Style the footer */
-.footer {
-  background-color: #f1f1f1;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  height: auto;
-}
+      .column.side,
+      .column.middle {
+        width: 100%;
+      }
+    }
 
-.card {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
-}
+    /* Style the footer */
+    .footer {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+      height: auto;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+    }
 
-.card img{
-  max-width: 100%;
-  height: auto;
-}
-.Box{
-  width: 100px;
-  height: 100px;
-  float: center 
-}
+    .footer  a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      text-decoration: none;
 
-.grid-container {
-  display: grid;
-  justify-content: center;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /*Make the grid smaller than the container*/
-  padding: 10px;
+    }
 
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+    }
 
-}
+    .card img {
+      max-width: 100%;
+      height: auto;
+    }
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
+    .Box {
+      width: 100px;
+      height: 100px;
+      float: center
+    }
 
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border: 3px solid #f1f1f1;
-  z-index: 9;
-}
-
-/* Add styles to the form container */
-.form-container {
-  max-width: 600px;
-  padding: 10px;
-  background-color: white;
-}
-
-/* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
+    .grid-container {
+      display: grid;
+      justify-content: center;
+      justify-content: space-evenly;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      /*Make the grid smaller than the container*/
+      padding: 10px;
 
 
-    </style>
+    }
+
+    .grid-container>div {
+      background-color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 20px 0;
+      font-size: 30px;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 600px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password],
+    .form-container input[type=email] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Your body content goes here -->
+  <!-- Your body content goes here -->
 
-    <div class="header">
-        <h1>Gift And Sun's Kitchen</h1>
+  <div class="header">
+    <h1>Gift And Sun's Kitchen</h1>
+  </div>
+
+  <div class="topnav">
+    <p id="topoff">
+      <a id="topoff1" href="#butt1" onclick="myReplace()">Recipies </a>
+      <a href="#butt2">Products</a>
+      <a href="#butt3">Gift & Sun</a>
+      <a href="#butt4">Food</a>
+      <a href="#butt5">Pastries</a>
+    </p>
+  </div>
+
+  <!--start your form here-->
+  <div id="MyDscroll" onload="openForm()">
+    <!-- <div class = "popup">       -->
+    <form id="signupbabe" method="get" class="form-container">
+      <h1>SUBSCRIBE TO SUN & GIFT</h1>
+      <label for="fname">Name:</label>
+      <input type="text" id="fname" name="name" placeholder="Emily"><br>
+      <label for="iemail">Email:</label>
+      <input type="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
+      <label for="mpassword">Password:</label>
+      <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
+      <input type="submit" name=" submit">
+
+    </form>
+  </div>
+
+  <p id="formoutput">chicken</p>
+
+
+
+
+  <div class="footer">
+    <div class="grid-container">
+      <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a>
+      <a id="butt2" href="#Food"> food </a>
+      <a id="butt3" href="#Bro">entree </a>
+      <a id="butt4" href="#Pastries"> pastries</a> <br>
     </div>
+  </div>
 
-    <div class="topnav">
-        <p id="topoff">
-            <a id="topoff1" href="#butt1" onclick = "myReplace()">Recipies </a>
-            <a href="#butt2">Products</a>
-            <a href="#butt3">Gift & Sun</a>
-            <a href="#butt4">Food</a>
-            <a href="#butt5">Pastries</a>
-        </p>
-    </div>
-
-          <!--start your form here-->
-          <div id ="MyDscroll">
-           <!-- <div class = "popup">       --> 
-            <form id ="signupbabe" method ="get" class="form-container">
-              <h1>SUBSCRIBE TO SUN & GIFT</h1>
-              <label for="fname">Name:</label>
-              <input type="text" id="fname" name="name" placeholder="Emily"><br>
-              <label for="iemail">Email:</label>
-              <input type ="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
-              <label for="mpassword">Password:</label>
-              <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
-              <input type="submit" name=" submit">
-
-
-            </form>
-          </div>
- <h1 id ="formoutput"></h1>
-
-            <div class="card">
-                <div class="box">
-                    <img src="webbigpicture.jpg" alt="Image">
-                </div>
-            </div>
-
-        <div class="footer">
-            <div class="grid-container">
-                <a id="butt1" href="#Bro" onclick ="redirectw3()"> <img src="recipies.jpeg" width="200px" alt="Recipe 1"> </a>
-                <a id="butt2" href="#Food"><img src="entreeeee.jpg" width="200px" alt="Food Image"> </a>
-                <a id="butt3" href="#Bro"> <img src="recipies.jpg" width="150px" alt="Recipe 2"> </a>
-                <a id="butt4" href="#Pastries"><img src="pastries.jpg" width="200px" alt="Pastries Image"> </a> <br>
-            </div>
-        </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="control.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
+
