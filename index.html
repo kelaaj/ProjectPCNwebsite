@@ -31,6 +31,7 @@
     .topnav {
       overflow: hidden;
       background-color: #333;
+      text-align: center;
     }
 
     /* Style the topnav links */
@@ -104,6 +105,8 @@
       left: 0;
       bottom: 0;
       position: fixed;
+      overflow: hidden;
+      text-align: center;
     }
 
     .footer  a {
@@ -111,6 +114,7 @@
       display: block;
       color: #f2f2f2;
       text-align: center;
+      padding: 16px 16px;
       text-decoration: none;
 
     }
@@ -150,21 +154,16 @@
       font-size: 30px;
     }
 
-    /* The popup form - hidden by default */
-    .form-popup {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      border: 3px solid #f1f1f1;
-      z-index: 9;
-    }
 
     /* Add styles to the form container */
     .form-container {
       max-width: 600px;
       padding: 10px;
       background-color: white;
+      position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     }
 
     /* Full-width input fields */
@@ -177,6 +176,7 @@
       border: none;
       background: #f1f1f1;
     }
+    
   </style>
 </head>
 
@@ -188,47 +188,45 @@
   </div>
 
   <div class="topnav">
-    <p id="topoff">
       <a id="topoff1" href="#butt1" onclick="myReplace()">Recipies </a>
       <a href="#butt2">Products</a>
       <a href="#butt3">Gift & Sun</a>
       <a href="#butt4">Food</a>
       <a href="#butt5">Pastries</a>
-    </p>
   </div>
 
   <!--start your form here-->
-  <div id="MyDscroll" onload="openForm()">
-    <!-- <div class = "popup">       -->
-    <form id="signupbabe" method="get" class="form-container">
-      <h1>SUBSCRIBE TO SUN & GIFT</h1>
-      <label for="fname">Name:</label>
-      <input type="text" id="fname" name="name" placeholder="Emily"><br>
-      <label for="iemail">Email:</label>
-      <input type="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
-      <label for="mpassword">Password:</label>
-      <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
-      <input type="submit" name=" submit">
+ <!-- Remove the onload attribute from the following div -->
+<div id="MyDscroll">
+  <!-- <div class="popup">       -->
+  <form id="signupbabe" method="get" class="form-container">
+    <h1>SUBSCRIBE TO SUN & GIFT</h1>
+    <label for="fname">Name:</label>
+    <input type="text" id="fname" name="name" placeholder="Emily"><br>
+    <label for="iemail">Email:</label>
+    <input type="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
+    <label for="mpassword">Password:</label>
+    <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
+    <input type="submit" name="SignUp"> <br>
+    <p id ="iDO"> Already have an account? <a href="#" id = "ireally">Login</a></p>
+  </form>
+</div>
 
-    </form>
-  </div>
 
-  <p id="formoutput">chicken</p>
+  <p id="formoutput"></p>
 
 
 
 
   <div class="footer">
-    <div class="grid-container">
-      <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a>
+      <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a> 
       <a id="butt2" href="#Food"> food </a>
       <a id="butt3" href="#Bro">entree </a>
       <a id="butt4" href="#Pastries"> pastries</a> <br>
-    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="script.js"></script>
+  <script src="control.js"></script>
 </body>
 
 </html>
