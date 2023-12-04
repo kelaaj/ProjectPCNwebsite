@@ -51,6 +51,13 @@
       color: black;
     }
 
+    .topnav2 {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      text-align: left;
+      padding: 14px 14px;
+    }
+
     /*pop up bar */
     .popup {
       width: auto;
@@ -201,21 +208,20 @@
   <!-- <div class="popup">       -->
   <form id="signupbabe" method="get" class="form-container">
     <h1>SUBSCRIBE TO SUN & GIFT</h1>
-    <input hidden type="text" id="fingerprint" name="fingerprint" value="">
     <label for="fname">Name:</label>
     <input type="text" id="fname" name="name" placeholder="Emily"><br>
     <label for="iemail">Email:</label>
     <input type="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
     <label for="mpassword">Password:</label>
     <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
-    <input type="submit" name="SignUp"> <br>
+    <input type="submit" name="SignUp" onclick="register()"> <br>
     <p id ="iDO"> Already have an account? <a href="#" id = "ireally">Login</a></p>
   </form>
 </div>
 
-
-  <p id="formoutput"></p>
-
+<div class= "topnav2">
+  <h1 id="formoutput"></h1>
+</div>
 
   <div class="footer">
       <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a> 
@@ -224,9 +230,17 @@
       <a id="butt4" href="#Pastries"> pastries</a> <br>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
+
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+  <script defer  src="./init-firebase.js"></script>
+  
+  
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="control.js"></script>
+    <script src="control.js"></script>
 </body>
 
 </html>
