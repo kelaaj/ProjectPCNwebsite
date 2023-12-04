@@ -201,6 +201,7 @@
   <!-- <div class="popup">       -->
   <form id="signupbabe" method="get" class="form-container">
     <h1>SUBSCRIBE TO SUN & GIFT</h1>
+    <input hidden type="text" id="fingerprint" name="fingerprint" value="">
     <label for="fname">Name:</label>
     <input type="text" id="fname" name="name" placeholder="Emily"><br>
     <label for="iemail">Email:</label>
@@ -216,8 +217,6 @@
   <p id="formoutput"></p>
 
 
-
-
   <div class="footer">
       <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a> 
       <a id="butt2" href="#Food"> food </a>
@@ -225,6 +224,7 @@
       <a id="butt4" href="#Pastries"> pastries</a> <br>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="control.js"></script>
 </body>
