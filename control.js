@@ -1,233 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+$(document).ready(function () {
+  // Popup functionality
+  $("#MyDscroll").hide();
 
-<head>
-  <title> Gift plus Sun </title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width = device-width">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  function openForm() {
+    // Use jQuery to toggle the visibility of the form
+    $("#MyDscroll").show();
 
-    body {
-      background-image: url('webbigpicture.jpg');
-      background-size: cover;
-      margin: 0;
-      scroll-behavior: smooth;
-      /* Enable smooth scrolling */
-    }
+    // Include fingerprintjs2 library
+    var fingerprint;
 
-    /* Style the header */
-    .header {
-      background-color: #f1f1f1;
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-    }
+    new Fingerprint2().get(function (result, components) {
+      fingerprint = result; // store the fingerprint for later use
+    });
 
-    /* Style the top navigation bar */
-    .topnav {
-      overflow: hidden;
-      background-color: #333;
-      text-align: center;
-    }
+    // Store users' info as an array of objects
+    const users = [];
 
-    /* Style the topnav links */
-    .topnav a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
+    // Event handler for form submission
+    $("#signupbabe").on("submit", function (event) {
+      // Prevent the default form submission
+      event.preventDefault();
 
-    }
+      // Get the values of form elements
+      var firstName = $("#fname").val();
+      var email = $("#iemail").val();
+      var password = $("#mpassword").val();
 
-    /* Change color on hover */
-    .topnav a:hover {
-      background-color: #ddd;
-      color: black;
-    }
+      // Check if the entered email and password match any user in the array
+      var userExists = users.some(function (user) {
+        return user.email === email && user.password === password;
+      });
 
-    /*pop up bar */
-    .popup {
-      width: auto;
-      height: auto;
-      padding: auto;
-      border: 3px solid red;
-      box-sizing: border-box;
-      float: center;
-      text-align: center;
-      background: fixed;
-    }
+      // Check if user already signed up based on fingerprint
+      var fingerprintExists = users.some(function (user) {
+        return user.fingerprint === fingerprint;
+      });
 
-    /* Create three unequal columns that floats next to each other */
-    .column {
-      float: left;
-      padding: 10px;
-    }
+      if (userExists || fingerprintExists) {
+        // Display an error message
+        $("#iDO").html("Error: You already have an account");
+      } else {
+        // Add user info to the users array
+        users.push({
+          id: Date.now().toString(),
+          name: firstName,
+          email: email,
+          password: password,
+          fingerprint: fingerprint,
+        });
 
-    /* Left and right column */
-    .column.side {
-      width: 25%;
-    }
+        // Hide the form
+        $("#MyDscroll").hide();
 
-    /* Middle column */
-    .column.middle {
-      width: 50%;
-    }
-
-    /* Clear floats after the columns */
-    .row::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 600px) {
-
-      .column.side,
-      .column.middle {
-        width: 100%;
+        // Replace the content of the formoutput element with the welcome message
+        $("#formoutput").html("Welcome: " + firstName);
       }
-    }
+    });
+  }
 
-    /* Style the footer */
-    .footer {
-      background-color: #333;
-      padding: 10px;
-      text-align: center;
-      width: 100%;
-      height: auto;
-      left: 0;
-      bottom: 0;
-      position: fixed;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .footer  a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 16px 16px;
-      text-decoration: none;
-
-    }
-
-    .card {
-      background-color: white;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .card img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .Box {
-      width: 100px;
-      height: 100px;
-      float: center
-    }
-
-    .grid-container {
-      display: grid;
-      justify-content: center;
-      justify-content: space-evenly;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      /*Make the grid smaller than the container*/
-      padding: 10px;
+  // Call openForm after 5000 milliseconds (5 seconds)
+  var timerID = setTimeout(openForm, 5000);
 
 
-    }
+  // Function for redirection using location.replace
+  function myReplace() {
+    var elOutput = document.getElementById("butt1");
+    location.replace(elOutput.href);
+  }
 
-    .grid-container>div {
-      background-color: rgba(255, 255, 255, 0.8);
-      text-align: center;
-      padding: 20px 0;
-      font-size: 30px;
-    }
+  // Assign the function myReplace to the onclick property of the element with id "topoff1"
+  document.getElementById("topoff1").onclick = function() {
+    myReplace();
+  };
 
+  // Function for redirection to a specific URL
+  function redirectw3() {
+    window.location.href = "https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_redirect_webpage";
+  }
 
-    /* Add styles to the form container */
-    .form-container {
-      max-width: 600px;
-      padding: 10px;
-      background-color: white;
-      position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    }
-
-    /* Full-width input fields */
-    .form-container input[type=text],
-    .form-container input[type=password],
-    .form-container input[type=email] {
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      border: none;
-      background: #f1f1f1;
-    }
-    
-  </style>
-</head>
-
-<body>
-  <!-- Your body content goes here -->
-
-  <div class="header">
-    <h1>Gift And Sun's Kitchen</h1>
-  </div>
-
-  <div class="topnav">
-      <a id="topoff1" href="#butt1" onclick="myReplace()">Recipies </a>
-      <a href="#butt2">Products</a>
-      <a href="#butt3">Gift & Sun</a>
-      <a href="#butt4">Food</a>
-      <a href="#butt5">Pastries</a>
-  </div>
-
-  <!--start your form here-->
- <!-- Remove the onload attribute from the following div -->
-<div id="MyDscroll">
-  <!-- <div class="popup">       -->
-  <form id="signupbabe" method="get" class="form-container">
-    <h1>SUBSCRIBE TO SUN & GIFT</h1>
-    <input hidden type="text" id="fingerprint" name="fingerprint" value="">
-    <label for="fname">Name:</label>
-    <input type="text" id="fname" name="name" placeholder="Emily"><br>
-    <label for="iemail">Email:</label>
-    <input type="email" id="iemail" name="email" placeholder="jummy@gmail.com"> <br>
-    <label for="mpassword">Password:</label>
-    <input type="password" id="mpassword" name="password" placeholder="Emilyjut@2023"> <br>
-    <input type="submit" name="SignUp"> <br>
-    <p id ="iDO"> Already have an account? <a href="#" id = "ireally">Login</a></p>
-  </form>
-</div>
-
-
-  <p id="formoutput"></p>
-
-
-  <div class="footer">
-      <a id="butt1" href="#Bro" onclick="redirectw3()">Recipie</a> 
-      <a id="butt2" href="#Food"> food </a>
-      <a id="butt3" href="#Bro">entree </a>
-      <a id="butt4" href="#Pastries"> pastries</a> <br>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/2.1.0/fingerprint2.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="control.js"></script>
-</body>
-
-</html>
+  // Assign the function redirectw3 to the onclick property of the element with id "butt1"
+  document.getElementById("butt1").onclick = function() {
+    redirectw3();
+  };
+});
 
