@@ -1,4 +1,7 @@
+//code from github
+
 $(document).ready(function () {
+
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCI_AEg_j0cmkfzzEZ-SD6PxvCv88N-ZwQ",
@@ -23,110 +26,78 @@ $(document).ready(function () {
       .then(function () {
         var user = auth.currentUser;
 
-        // Add user data to Firebase database
+        //add users to firebase database
         var database_ref = database.ref();
 
         // Add this user to Firebase database
-        var user_data = {
+        var user_data = { 
           email: email,
           fullname: fullname,
           last_login: Date.now()
         };
         database_ref.child('users/' + user.uid).set(user_data);
-
-        // Retrieve the value of the input field with id "fname"
-        var firstName = $("#fname").val();
-
-        // Replace the content of the formoutput element with the welcome message
-        $("#formoutput").html("Welcome: " + firstName);
-
-        // Clear the timeout to cancel the timer
-        clearTimeout(timerID);
-
-        // Hide the form only if user creation is successful
-        $("#MyDscroll").hide();
       })
       .catch(function (error) {
-        alert("Error creating user: Your account already exists");
+        alert("Error creating user: " + error.message);
       });
-  }
-
-  // Set up login function
-  function login(email, password) {
-    auth.signInWithEmailAndPassword(email, password)
-      .then(function () {
-        var user = auth.currentUser;
-
-        // Add user data to Firebase database
-        var database_ref = database.ref();
-
-        // Add this user to Firebase database
-        var user_data = {
-          last_login: Date.now()
-        };
-        database_ref.child('users/' + user.uid).update(user_data);
-
-        $("#Mylogin").hide();
-
-        // Welcome message
-        $("#formoutput").html("Welcome: " + user.displayName);
-      })
-      .catch(function (error) {
-        alert(error.message);
-      });
+      
   }
 
   // Popup functionality
-  $("#Mylogin").hide();
   $("#MyDscroll").hide();
 
   function openForm() {
+    // Use jQuery to toggle the visibility of the form
     $("#MyDscroll").show();
   }
 
+  // Call openForm after 5000 milliseconds (5 seconds)
   var timerID = setTimeout(openForm, 5000);
 
+  // Event handler for form submission
   $("#signupbabe").on("submit", function (event) {
+    // Prevent the default form submission
     event.preventDefault();
+
+    // Get all input from the form
     var fullname = $("#fname").val();
     var email = $("#iemail").val();
     var password = $("#mpassword").val();
 
+    // Call the register function
     register(fullname, email, password);
+
+    // Hide the form
+    $("#MyDscroll").hide();
+
+    // Retrieve the value of the input field with id "fname"
+    var firstName = $("#fname").val();
+
+    // Replace the content of the formoutput element with the welcome message
+    $("#formoutput").html("Welcome: " + firstName);
+
+    // Clear the timeout to cancel the timer
+    clearTimeout(timerID);
   });
 
+  // Function for redirection using location.replace
   function myReplace() {
     var elOutput = document.getElementById("butt1");
     location.replace(elOutput.href);
   }
 
+  // Assign the function myReplace to the onclick property of the element with id "topoff1"
   document.getElementById("topoff1").onclick = function () {
     myReplace();
   };
 
+  // Function for redirection to a specific URL
   function redirectw3() {
     window.location.href = "https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_redirect_webpage";
   }
 
+  // Assign the function redirectw3 to the onclick property of the element with id "butt1"
   document.getElementById("butt1").onclick = function () {
     redirectw3();
   };
-
-  function showLoginForm() {
-    $("#Mylogin").show();
-    $("#MyDscroll").hide();
-  }
-
-  document.getElementById("ireally").onclick = function () {
-    showLoginForm();
-  };
-
-  $("#loginbabe").on("submit", function (event) {
-    event.preventDefault();
-
-    var email = $("#iemail").val();
-    var password = $("#mpassword").val();
-
-    login(email, password);
-  });
 });
