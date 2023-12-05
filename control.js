@@ -1,3 +1,5 @@
+//Javascript
+
 $(document).ready(function () {
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -54,6 +56,31 @@ $(document).ready(function () {
       })
       .catch(function (error) {
         alert("Error creating user: " + error.message);
+      });
+  }
+
+  // Set up login function
+  function login(email, password) {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(function () {
+        var user = auth.currentUser;
+
+        // Add user data to Firebase database
+        var database_ref = database.ref();
+
+        // Add this user to Firebase database
+        var user_data = {
+          last_login: Date.now()
+        };
+        database_ref.child('users/' + user.uid).update(user_data);
+
+        $("#Mylogin").hide();
+
+        // Welcome message
+        $("#formoutput").html("Welcome Back " );
+      })
+      .catch(function (error) {
+        alert(error.message);
       });
   }
 
@@ -116,4 +143,29 @@ $(document).ready(function () {
   document.getElementById("butt1").onclick = function () {
     redirectw3();
   };
+
+  // Event handler for login form submission
+  $("#loginbabe").on("submit", function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get input from the login form
+    var email = $("#jemail").val();
+    var password = $("#kpassword").val();
+
+    // Call the login function
+    login(email, password);
+  });
+
+    // Event handler to show login form when clicking on "Mylogin"
+    $("#ireally").on("click", function () {
+      showLoginForm();
+    });
+  
+    // Function to show login form
+    function showLoginForm() {
+      $("#Mylogin").show();
+      $("#MyDscroll").hide();
+    }
 });
+
