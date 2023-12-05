@@ -1,7 +1,4 @@
-//code from github
-
 $(document).ready(function () {
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCI_AEg_j0cmkfzzEZ-SD6PxvCv88N-ZwQ",
@@ -22,36 +19,58 @@ $(document).ready(function () {
 
   // Set up register function
   function register(fullname, email, password) {
+    // Validate email format
+    if (!validateEmail(email)) {
+      alert("Invalid email address");
+      return;
+    }
+
     auth.createUserWithEmailAndPassword(email, password)
       .then(function () {
         var user = auth.currentUser;
 
-        //add users to firebase database
+        // Add user data to Firebase database
         var database_ref = database.ref();
 
         // Add this user to Firebase database
-        var user_data = { 
+        var user_data = {
           email: email,
           fullname: fullname,
           last_login: Date.now()
         };
         database_ref.child('users/' + user.uid).set(user_data);
+
+        // Retrieve the value of the input field with id "fname"
+        var firstName = $("#fname").val();
+
+        // Replace the content of the formoutput element with the welcome message
+        $("#formoutput").html("Welcome: " + firstName);
+
+        // Clear the timeout to cancel the timer
+        clearTimeout(timerID);
+
+        // Hide the form only if user creation is successful
+        $("#MyDscroll").hide();
       })
       .catch(function (error) {
         alert("Error creating user: " + error.message);
       });
-      
+  }
+
+  // Function to validate email format
+  function validateEmail(email) {
+    var expression = /^[^@]+@\w+(\.\w+)+\w$/;
+    return expression.test(email);
   }
 
   // Popup functionality
+  $("#Mylogin").hide();
   $("#MyDscroll").hide();
 
   function openForm() {
-    // Use jQuery to toggle the visibility of the form
     $("#MyDscroll").show();
   }
 
-  // Call openForm after 5000 milliseconds (5 seconds)
   var timerID = setTimeout(openForm, 5000);
 
   // Event handler for form submission
@@ -66,9 +85,6 @@ $(document).ready(function () {
 
     // Call the register function
     register(fullname, email, password);
-
-    // Hide the form
-    $("#MyDscroll").hide();
 
     // Retrieve the value of the input field with id "fname"
     var firstName = $("#fname").val();
