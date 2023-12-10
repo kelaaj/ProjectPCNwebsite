@@ -123,24 +123,21 @@ $(document).ready(function () {
     clearTimeout(timerID);
   });
 
-  // Function for redirection using location.replace
-  function myReplace() {
-    var elOutput = document.getElementById("butt1");
-    location.replace(elOutput.href);
-  }
+     // Function to show login form
+     function showLoginForm() {
+      $("#Mylogin").show();
+      $("#MyDscroll").hide();
+    }
 
-  // Assign the function myReplace to the onclick property of the element with id "topoff1"
-  document.getElementById("topoff1").onclick = function () {
-    myReplace();
-  };
+
 
   // Function for redirection to a specific URL
   function redirectw3() {
-    window.location.href = "https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_redirect_webpage";
+    window.location.href ="https://ssun-studio.github.io/drink.html";
   }
 
   // Assign the function redirectw3 to the onclick property of the element with id "butt1"
-  document.getElementById("butt1").onclick = function () {
+  document.getElementById("topoff1").onclick = function () {
     redirectw3();
   };
 
@@ -162,10 +159,5 @@ $(document).ready(function () {
       showLoginForm();
     });
   
-    // Function to show login form
-    function showLoginForm() {
-      $("#Mylogin").show();
-      $("#MyDscroll").hide();
-    }
+ 
 });
-
